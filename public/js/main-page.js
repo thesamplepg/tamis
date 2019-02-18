@@ -5,8 +5,8 @@ const scrollHandler = (e) => {
     const y = window.scrollY;
     const header = $('header');
 
-    if(y > 0) header.style.background = 'rgba(0, 0, 0, 0.363)';
-    else header.style.background = 'rgba(0, 0, 0, 0)';
+    if(y > 0) header.style.background = 'rgba(0, 0, 0, 0.767)';
+    else header.style.background = 'rgba(0, 0, 0, 0.363)';
 }
 
 window.addEventListener('scroll', scrollHandler);
