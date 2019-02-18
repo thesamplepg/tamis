@@ -7,6 +7,7 @@
     <title>Flowarea</title>
     <%- include('components/styles')%>
     <link rel="stylesheet" href="/assets/css/index.css"/>
+    <link rel="stylesheet" href="/assets/css/second.css">
 </head>
 <body>
     <header>
@@ -16,7 +17,6 @@
             </div>
             <ul class="nav">
                 <li><a href="#" class="order">Заказать</a></li>
-                <li><a href="#">О нас</a></li>
             </ul>
             <div class="burger">
                 <div></div>
@@ -25,7 +25,6 @@
             </div>
             <ul class="responsive-nav">
                 <li><a href="#" class="list-item">Заказать</a></li>
-                <li><a href="#" class="list-item">О нас</a></li>
             </ul>
         </div>
     </header>
@@ -54,7 +53,38 @@
             </div>
         </div>
     </div>
-
+    <div class="quiz">
+        <div class="quiz-container">
+            <h1>Пройди опрос и стань участником розыгрыша подарка на 8 марта</h1>
+            <h2>Опиши cвой подарок мечты</h2>
+            <div class="quiz-btn">Принять участие</div>
+        </div>
+        <footer>
+            <div class="footer-container">
+                <div class="social-buttons">
+                    <a href="https://www.instagram.com/thenotoriousmma/?hl=ru">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="brand-name-footer">
+                    Flowarea
+                </div>
+                <div class="phone-numbers">
+                    <div>0776127726</div>
+                    <div>0774062751</div>
+                    <div>0704161202</div>
+                    <div>0550788819</div>
+                </div>
+            </div>
+        </footer>      
+    </div>
+    <form action="/quiz" method="POST" class="quiz-form">
+        <i class="fa fa-times close"></i>
+        <textarea name="text" placeholder="Опишите ваш подарок мечты"></textarea>
+        <input type="number" name="phone" placeholder="Номер телефона">
+        <div class="message-block"></div>
+        <input type="submit">
+    </form>
     <script src="/assets/js/main-page.js"></script>
 </body>
 </html>
