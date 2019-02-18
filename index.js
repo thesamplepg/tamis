@@ -19,4 +19,4 @@ const listenHandler = (err) => {
     if(err) return console.log(err);
     console.log('__[ Server has started ]__');
 }
-app.listen(5000, listenHandler);
+app.listen(process.env.NODE_ENV || 5000, listenHandler);
