@@ -38,7 +38,7 @@ $('.close').addEventListener('click', (e) => {
 // send operations
 
 const sendData = (url, data) => {
-    
+    //send data to backend
 }
 
 
