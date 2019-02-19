@@ -153,6 +153,43 @@ footer {
     margin: 1rem 0;
 }
 
+.quized-message {
+    position: fixed;
+    top: -150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Poiret One', cursive;
+    font-size: 2rem;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 10px 2px #000;
+    animation: show-message 1s 0.5s ease forwards;
+}
+
+.hide-message {
+    animation: hide-message 1s  ease forwards;
+}
+
+@keyframes hide-message {
+    from {
+        top: 20%;
+    } to {
+        top: -150%;
+    }
+}
+
+@keyframes show-message {
+    from {
+        top: -150%;
+    } to {
+        top: 20%;
+    }
+}
+
 /* media */
 
 @media (max-width: 1024px) {

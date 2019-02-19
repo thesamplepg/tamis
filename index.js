@@ -15,15 +15,13 @@ app.use('/assets/', express.static(path.resolve(__dirname, 'public')));
 let quized = false;
 
 app.get('/', (req, res) => {
-    if(quized) {
-        res.render('index', {
-            massage: 'Вы участвуете в конкурсе'
-        });
 
+    if(quized) {
         quized = false;
-    } else {
-        res.render('index');
-    }
+        res.render('index', {message: true});
+    } 
+    else res.render('index', {message: false});
+
 });
 
 app.post('/quiz', async(req, res) => {
@@ -32,8 +30,10 @@ app.post('/quiz', async(req, res) => {
     const newQuiz = await new Quiz({text, phone}).save();
     
     quized = true;
-    res.redirect('/');
+    res.json({quiz: 'success'});
 });
+
+app.use('/admin', require('./admin'));
 
 const listenHandler = (err) => {
     if(err) return console.log(err);
