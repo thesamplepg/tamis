@@ -1,3 +1,4 @@
+
 .container {
     width: 1024px;
     margin: 0 auto;
@@ -10,6 +11,20 @@
     padding: 1rem;
 }
 
+.trash {
+    position: absolute;
+    top: 5%;
+    right: 10px;
+    color: #ff6347;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.trash:hover {
+    transform: rotate(20deg);
+}
+
 .quizzes {
     display: flex;
     flex-wrap: wrap;
@@ -18,6 +33,7 @@
 }
 
 .quiz {
+    position: relative;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -31,11 +47,6 @@
     font-weight: bold;
     justify-content: space-between;
     overflow: hidden;
-    transition: box-shadow 0.13s;
-}
-
-.quiz:active {
-    box-shadow: inset 0 0 5px 2px black;
 }
 
 .quiz-text {
@@ -55,7 +66,11 @@ form {
     flex-direction: column;
 }
 
-form input {
+form input::-webkit-input-placeholder, form textarea::-webkit-input-placeholder {
+    color: #fff;
+}
+
+form input, form textarea {
     width: 400px;
     padding: 0.5rem;
     font-family: 'Poiret One', cursive;
@@ -69,8 +84,45 @@ form input {
     background-color: teal;
 }
 
+.flowers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.flower {
+    width: 200px;
+    background-color: #000;
+    margin: 1rem;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.1rem;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.flower-cost, .flower-title {
+    padding: 0.5rem;
+}
+
+.flower-cost {
+    background-color: teal;
+}
+
+.flower-image {
+    width: 100%;
+    height: 120px;
+}
+
 @media (max-width: 1024px) {
     .container {
         width: 100%;
+    }
+
+}
+
+@media (max-width: 420px) {
+    form input {
+        width: 95%;
     }
 }

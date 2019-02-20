@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const Quiz = require('./mongo/models/Quiz');
+const Flower = require('./mongo/models/Flower');
+const favicon = require('express-favicon');
 
 const app = express();
 
@@ -10,17 +12,20 @@ require('./mongo');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(favicon(__dirname + '/public/favicon.png'));
 app.use('/assets/', express.static(path.resolve(__dirname, 'public')));
 
 let quized = false;
 
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
+
+    const content = await Flower.find({}); 
 
     if(quized) {
         quized = false;
-        res.render('index', {message: true});
+        res.render('index', {message: true, content});
     } 
-    else res.render('index', {message: false});
+    else res.render('index', {message: false, content});
 
 });
 

@@ -14,7 +14,10 @@
         <% if (quizzes.length > 0) { %>
             <div class="quizzes">
                 <% quizzes.forEach(quiz => { %>
-                    <div class="quiz">
+                    <div class="quiz" data-id="<%= quiz._id%>" type="quiz">
+                        <div class="trash">
+                            <i class="fa fa-trash"></i>
+                        </div>
                         <div class="quiz-text"><%= quiz.text%></div>
                         <div class="quiz-phone"><%= quiz.phone%></div>
                     </div>
@@ -25,12 +28,37 @@
         <% } %>
         
         <h1>Добавить товар</h1>
-        <form action="/add" method="POST" enctype="multipart/form-data">
+        <form action="/admin/add" method="POST" enctype="multipart/form-data">
             <input type="file" name="image">
-            <input type="text" name="title">
-            <input type="number" name="cost">
+            <input type="text" name="title" placeholder="Title">
+            <input type="number" name="cost" placeholder="Cost">
+            <textarea name="description" placeholder="Description"></textarea>
             <input type="submit">
         </form>
+
+        <h1>цветы</h1>
+        <% if (flowers.length > 0) { %>
+            <div class="flowers">
+                <% flowers.forEach(flower => { %>
+                    <div class="flower" data-id="<%= flower._id%>" type="flower">
+                        <div class="trash">
+                            <i class="fa fa-trash"></i>
+                        </div>
+                        <div
+                            style="background: url('<%= flower.img%>') center center / cover;" 
+                            class="flower-image"
+                        ></div>
+                        <div class="flower-title"><%= flower.title%></div>
+                        <div class="flower-cost"><%= flower.cost%> KGS</div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <h2 class="Error">No flowers yet</h2>
+        <% } %>
     </div>
+
+    <script src="/assets/js/components.js"></script>
+    <script src="/assets/js/admin.js"></script>
 </body>
 </html>

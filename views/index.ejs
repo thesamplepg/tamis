@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Flowarea</title>
+    <title>Tamis</title>
     <%- include('components/styles')%>
     <link rel="stylesheet" href="/assets/css/index.css"/>
     <link rel="stylesheet" href="/assets/css/second.css">
@@ -18,18 +18,10 @@
     <header>
         <div class="header-container">
             <div class="brand-name">
-                Flowarea
+                Тамис
             </div>
             <ul class="nav">
                 <li><a href="#" class="order">Заказать</a></li>
-            </ul>
-            <div class="burger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <ul class="responsive-nav">
-                <li><a href="#" class="list-item">Заказать</a></li>
             </ul>
         </div>
     </header>
@@ -54,10 +46,63 @@
         <div class="icon-container">
             <i class="fa fa-truck"></i>
             <div class="text-us">
-                Доставка по всему городу
+                Бесплатная доставка 
             </div>
         </div>
     </div>
+    <section class="content-container">
+        <h1>Наш ассортимент</h1>
+        <% if (content) { %>
+            <div class="content">
+                <% content.forEach(item => { %>
+                    <div 
+                        class="content-item"
+                        data-title="<%= item.title%>" 
+                        data-img="<%= item.img%>"
+                        data-id="<%= item._id%>"
+                        data-cost="<%= item.cost%>"
+                    >  
+                        <div 
+                            class="image-section"
+                            style="background: url('<%= item.img%>') center center / cover;"
+                        >
+                            <div class="title">
+                                <%= item.title%>
+                            </div>
+                        </div>
+                        <div class="cost">
+                            <%= item.cost%> СОМ
+                        </div>
+                        <div class="description">
+                            <%= item.description%>
+                        </div>
+                    </div>
+                <% });%>
+            </div>
+        <% } else { %>
+            <h2>Извените но все раскуплено</h2>
+        <% } %>
+    </section>
+
+    <div class="order-content">
+        <div class="close-order">
+            <i class="fa fa-close"></i>
+        </div>
+        <h1>Ваш заказ</h1>
+        <div class="selling-content">
+            <div class="img-section" style="background: url('https://res.cloudinary.com/grami/image/upload/v1550639679/grnix9gryiuwozabvpfq.jpg') center center / cover;"></div>
+            <div class="title">Роза</div>
+            <div class="cost">120 СОМ</div>
+        </div>
+        
+        <form action="/order" method="POST">
+            <input type="text" name="name" placeholder="Ваше имя">
+            <input type="text" name="location" placeholder="Адрес для доставки">
+            <input type="number" name="phone" placeholder="Номер телефона">
+            <input type="submit" value="Заказать">
+        </form>
+    </div>
+
     <div class="quiz">
         <div class="quiz-container">
             <h1>Пройди опрос и стань участником розыгрыша подарка на 8 марта</h1>
@@ -72,7 +117,7 @@
                     </a>
                 </div>
                 <div class="brand-name-footer">
-                    Flowarea
+                    Tamis
                 </div>
                 <div class="phone-numbers">
                     <div>0776127726</div>
@@ -90,6 +135,7 @@
         <div class="message-block"></div>
         <input type="submit">
     </form>
+    <script src="/assets/js/components.js"></script>
     <script src="/assets/js/main-page.js"></script>
 </body>
 </html>

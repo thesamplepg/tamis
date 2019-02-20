@@ -1,6 +1,5 @@
-(function() {
-        
-    const $ = (identifier) => document.querySelector(identifier); 
+
+    // change the header depends on scroll
 
     const scrollHandler = (e) => {
         const y = window.scrollY;
@@ -12,18 +11,16 @@
 
     window.addEventListener('scroll', scrollHandler);
 
+    // scroll to content
 
-    const responsiveNav = $('.responsive-nav');
+    $('.order').addEventListener('click', (e) => {
+        e.preventDefault();
+        const offset = $('.content-container').offsetTop - 100;
 
-    $('.burger').addEventListener('click', (e) => {
-        responsiveNav.classList.add('show');
+        window.scrollTo({top: offset, behavior: 'smooth'});
     });
 
-    responsiveNav.addEventListener('click', (e) => {
-        if(!e.target.classList.contains('list-item')) {
-            responsiveNav.classList.remove('show');
-        }
-    });
+    //toggle quiz window
 
     const quizForm = $('.quiz-form');
 
@@ -45,25 +42,7 @@
         }, 5000);
     }
 
-
-    // send operations
-
-    const sendData = (url, data) => {
-        return new Promise((resolve, reject) => {
-            fetch(url, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-            .then(res => res.json())
-            .then(data => resolve(data))
-            .catch(err => reject(err));
-        });
-    }
-
+    // send quiz
 
     $('.quiz-form input[type=submit]').addEventListener('click', (e) => {
 
@@ -103,4 +82,42 @@
 
     }); 
     
-})();
+// create order
+
+    const items = $('.content').children;
+    const orderWindow = $('.order-content');
+    const orderTitle = $('.order-content .title');
+    const orderCost = $('.order-content .cost');
+    const orderImg = $('.order-content .img-section');
+
+    for(let i = 0; i < items.length; i++) {
+        const item = items[i];
+
+        const getData = (attr) => item.getAttribute(attr); 
+        
+        const data = {
+            title: getData('data-title'),
+            cost: getData('data-cost'),
+            img: getData('data-img'),
+            id: getData('data-id')
+        }
+
+        items[i].addEventListener('click', () => chooseOrderHandler(data));
+    }
+
+    const chooseOrderHandler = (item) => {
+        orderTitle.textContent = item.title;
+        orderCost.textContent = item.cost;
+        orderImg.style.background = `url('${item.img}') center center / cover`;
+        showOrderWindow();
+    }
+
+    const showOrderWindow = () => {
+        orderWindow.style.top = '0%';
+    }
+
+    const hideOrderWindow = () => {
+        orderWindow.style.top = '-100%';
+    }
+
+    $('.close-order').addEventListener('click', hideOrderWindow);
