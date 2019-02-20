@@ -226,6 +226,7 @@ header {
     width: 100%;
     top: -100%;    
     transition: top 1s;
+    display: none;
 }
 
 .close-order {
