@@ -1,15 +1,15 @@
 
     // change the header depends on scroll
 
-    const scrollHandler = (e) => {
-        const y = window.scrollY;
-        const header = $('header');
+    // const scrollHandler = (e) => {
+    //     const y = window.scrollY;
+    //     const header = $('header');
 
-        if(y > 0) header.style.background = 'rgba(0, 0, 0, 0.767)';
-        else header.style.background = 'rgba(0, 0, 0, 0.363)';
-    }
+    //     if(y > 0) header.style.background = 'rgba(0, 0, 0, 0.767)';
+    //     else header.style.background = 'rgba(0, 0, 0, 0.363)';
+    // }
 
-    window.addEventListener('scroll', scrollHandler);
+    // window.addEventListener('scroll', scrollHandler);
 
     // scroll to content
 
