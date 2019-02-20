@@ -34,7 +34,7 @@
 
     //close message
 
-    const showedMessage = $('.quized-message');
+    const showedMessage = $('.alert');
 
     if(showedMessage) {
         setTimeout(() => {
@@ -109,6 +109,8 @@
         orderTitle.textContent = item.title;
         orderCost.textContent = item.cost + ' СОМ';
         orderImg.style.background = `url('${item.img}') center center / cover`;
+        $('.hidden-input').value = item.id;
+        
         showOrderWindow();
     }
 

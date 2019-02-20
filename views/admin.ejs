@@ -56,6 +56,35 @@
         <% } else { %>
             <h2 class="Error">No flowers yet</h2>
         <% } %>
+        <h1>Заказы</h1>
+        <% if (orders.length > 0) { %>
+            <div class="orders">
+                <% orders.forEach(order => { %>
+                    <div class="order" data-id="<%= order._id%>" type="order">
+                        <div class="trash">
+                            <i class="fa fa-trash"></i>
+                        </div>
+                        <div class="order-name"><%= order.name%></div>
+                        <div class="order-location"><%= order.location%></div>
+                        <div class="order-amount"><%= order.amount%></div>
+                        <div class="order-phone"><%= order.phone%></div>
+                        <div class="order-id"><%= order.productId%></div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <h2 class="Error">No orders yet</h2>
+        <% } %>
+        <h1>Посмотреть продукт</h1>
+        <div class="check-product">
+            <div class="product">
+                <div class="product-img" style="background: url('http://res.cloudinary.com/grami/image/upload/v1550650303/qh9yv9gnfdxiaxehfjqv.jpg') center center / cover;"></div>
+                <div class="product-title">Rose</div>
+                <div class="product-cost">200 СОМ</div>
+                <div class="product-description">Good flower iwth beayty fukk flowers. And goold to have it to 8 march.</div>
+            </div>
+            <input type="text" name="id" placeholder="Input id of product">
+        </div>
     </div>
 
     <script src="/assets/js/components.js"></script>

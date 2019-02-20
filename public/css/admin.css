@@ -114,6 +114,55 @@ form input, form textarea {
     height: 120px;
 }
 
+.orders {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    flex-wrap: wrap;
+}
+
+.order {
+    margin: 1rem;
+    position: relative;
+}
+
+.order div {
+    color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.check-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    flex-direction: column;
+    width: 100%;
+}
+
+.check-product .product {
+    margin-bottom: 1rem;
+    width: 200px;
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 1.1rem;
+}
+
+.product-img {
+    width: 200px;
+    height: calc(200px / 1.8);
+}
+
+.product-cost, .product-title, .product-description {
+    border-bottom: 1px solid #000;
+    padding: 0.5rem;
+}
+
+
 @media (max-width: 1024px) {
     .container {
         width: 100%;

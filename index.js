@@ -4,6 +4,7 @@ const path = require('path');
 const Quiz = require('./mongo/models/Quiz');
 const Flower = require('./mongo/models/Flower');
 const favicon = require('express-favicon');
+const Order = require('./mongo/models/Order');
 
 const app = express();
 
@@ -16,16 +17,29 @@ app.use(favicon(__dirname + '/public/favicon.png'));
 app.use('/assets/', express.static(path.resolve(__dirname, 'public')));
 
 let quized = false;
+let orderCreated = false;
 
 app.get('/', async(req, res) => {
 
     const content = await Flower.find({}); 
 
+    const dataForSend = {content};
+
     if(quized) {
-        quized = false;
-        res.render('index', {message: true, content});
-    } 
-    else res.render('index', {message: false, content});
+        dataForSend.message = true;
+        quized = false
+    } else {
+        dataForSend.message = false;
+    }
+
+    if(orderCreated) {
+        dataForSend.orderCreated = true;
+        orderCreated = false;
+    } else {
+        dataForSend.orderCreated = false;
+    }
+
+    res.render('index', dataForSend);
 
 });
 
@@ -36,6 +50,16 @@ app.post('/quiz', async(req, res) => {
     
     quized = true;
     res.json({quiz: 'success'});
+});
+
+app.post('/order', async(req, res) => {
+    const {name, phone, location, amount, id} = req.body;
+
+    const newOrder = await Order({productId: id, name, phone, location, amount}).save();
+
+    orderCreated = true;
+
+    res.redirect('/');
 });
 
 app.use('/admin', require('./admin'));

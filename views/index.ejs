@@ -11,8 +11,13 @@
 </head>
 <body>
     <% if (message) { %>
-        <div class="quized-message">
+        <div class="quized-message alert">
             Вы успешно зарегистрированны в розыгрыше
+        </div>
+    <% } %>
+    <% if (orderCreated) { %>
+        <div class="order-message alert">
+            Ваш заказ принят на обработку
         </div>
     <% } %>
     <header>
@@ -96,9 +101,11 @@
         </div>
         
         <form action="/order" method="POST">
-            <input type="text" name="name" placeholder="Ваше имя">
-            <input type="text" name="location" placeholder="Адрес для доставки">
-            <input type="number" name="phone" placeholder="Номер телефона">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="text" name="location" placeholder="Адрес для доставки" required>
+            <input type="number" name="phone" placeholder="Номер телефона" required>
+            <input type="number" name="amount" placeholder="Количество" required>
+            <input type="text" name="id" class="hidden-input">
             <input type="submit" value="Заказать">
         </form>
     </div>

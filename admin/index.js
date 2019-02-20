@@ -1,6 +1,7 @@
 const express = require('express');
 const Quiz = require('../mongo/models/Quiz');
 const Flower = require('../mongo/models/Flower');
+const Order = require('../mongo/models/Order');
 const cloudinary = require('cloudinary');
 const multer = require('multer');
 const fs = require('fs');
@@ -34,7 +35,8 @@ router.get('/', async(req, res) => {
     if(password === 'void') {
         const quizzes = await Quiz.find();
         const flowers = await Flower.find();
-        res.render('admin', {quizzes, flowers});
+        const orders = await Order.find();
+        res.render('admin', {quizzes, flowers, orders});
     } else {
         res.redirect('/');
     }
@@ -83,6 +85,14 @@ router.post('/remove', async(req, res) => {
     } else if(type == 'quiz') {
         try {
             const removedItem = await Quiz.findByIdAndRemove(id);
+            res.json({removed: true})
+        } catch (error) {
+            console.log(error);
+            res.json({removed: false});
+        }
+    } else if(type == 'order') {
+        try {
+            const removedItem = await Order.findByIdAndRemove(id);
             res.json({removed: true})
         } catch (error) {
             console.log(error);

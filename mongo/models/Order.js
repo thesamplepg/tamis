@@ -13,13 +13,13 @@ const orderSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    type: {
-        type: String,
-        required: true
-    },
     amount: {
         type: Number,
         require: true
+    },
+    productId: {
+        type: String,
+        required: true
     }
 });
 
