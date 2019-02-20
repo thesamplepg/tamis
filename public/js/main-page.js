@@ -107,7 +107,7 @@
 
     const chooseOrderHandler = (item) => {
         orderTitle.textContent = item.title;
-        orderCost.textContent = item.cost;
+        orderCost.textContent = item.cost + ' СОМ';
         orderImg.style.background = `url('${item.img}') center center / cover`;
         showOrderWindow();
     }
@@ -117,7 +117,7 @@
     }
 
     const hideOrderWindow = () => {
-        orderWindow.style.top = '-200%';
+        orderWindow.style.top = '-150%';
     }
 
     $('.close-order').addEventListener('click', hideOrderWindow);
