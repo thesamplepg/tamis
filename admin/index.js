@@ -104,7 +104,6 @@ router.post('/remove', async(req, res) => {
 
 router.post('/check', async(req, res) => {
     const {id} = req.body;
-    console.log(id);
 
     if(mongodb.ObjectID.isValid(id)) {
         const product = await Flower.findById(id);

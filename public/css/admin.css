@@ -115,7 +115,6 @@ form input, form textarea {
 }
 
 .orders {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,10 +175,20 @@ form input, form textarea {
         width: 100%;
     }
 
+    .check-product {
+        width: 100%;
+    }
+
 }
 
 @media (max-width: 420px) {
-    form input {
+    form input, form textarea {
+        width: 95%;
+    }
+}
+
+@media (max-width: 210px) {
+    .product {
         width: 95%;
     }
 }
