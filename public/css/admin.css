@@ -141,6 +141,7 @@ form input, form textarea {
     padding: 1rem;
     flex-direction: column;
     width: 100%;
+    padding: 3rem 0;
 }
 
 .check-product .product {
@@ -150,6 +151,7 @@ form input, form textarea {
     font-weight: bold;
     border: 1px solid black;
     font-size: 1.1rem;
+    display: none;
 }
 
 .product-img {
@@ -160,6 +162,12 @@ form input, form textarea {
 .product-cost, .product-title, .product-description {
     border-bottom: 1px solid #000;
     padding: 0.5rem;
+}
+
+.product-error {
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 1rem;
 }
 
 

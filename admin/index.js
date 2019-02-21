@@ -5,6 +5,7 @@ const Order = require('../mongo/models/Order');
 const cloudinary = require('cloudinary');
 const multer = require('multer');
 const fs = require('fs');
+const mongodb = require('mongodb');
 
 const router = express.Router();
 
@@ -99,6 +100,32 @@ router.post('/remove', async(req, res) => {
             res.json({removed: false});
         }
     }
+});
+
+router.post('/check', async(req, res) => {
+    const {id} = req.body;
+    console.log(id);
+
+    if(mongodb.ObjectID.isValid(id)) {
+        const product = await Flower.findById(id);
+
+        if(product) {
+            res.json({
+                check: true,
+                title: product.title,
+                cost: product.cost,
+                description: product.description,
+                img: product.img
+            });
+        } else {
+            res.json({
+                check: false
+            });
+        }
+    } else {
+        res.json({check: false});
+    }
+    
 });
 
 module.exports = router;

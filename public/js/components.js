@@ -1,7 +1,6 @@
 const $ = (identifier) => document.querySelector(identifier); 
 
 const sendData = (url, data) => {
-    console.log(url, data);
     return new Promise((resolve, reject) => {
         fetch(url, {
             headers: {
