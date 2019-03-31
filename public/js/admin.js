@@ -1,13 +1,16 @@
 const trashHandler = (e) => {
-    if(e.target.parentElement.classList.contains('trash')) {
-        
-        const elementToRemove = e.target.parentElement.parentElement; 
+    if (e.target.parentElement.classList.contains('trash')) {
+
+        const elementToRemove = e.target.parentElement.parentElement;
         const id = elementToRemove.getAttribute('data-id');
         const type = elementToRemove.getAttribute('type');
-       
-        sendData('/admin/remove', {id, type})
+
+        sendData('/admin/remove', {
+                id,
+                type
+            })
             .then(data => {
-                if(data.removed) {
+                if (data.removed) {
                     elementToRemove.remove();
                 }
             })
@@ -41,21 +44,22 @@ const inputHandler = (e) => {
     const product = $('.product');
     const productError = $('.product-error')
 
-    sendData('/admin/check', {id})
+    sendData('/admin/check', {
+            id
+        })
         .then(data => {
-            if(data.check) {
+            if (data.check) {
                 productError.style.display = 'none';
                 showProduct(data);
             } else {
                 product.style.display = 'none';
-                productError.style.display = 'block'; 
+                productError.style.display = 'block';
             }
         })
         .catch(err => {
             product.style.display = 'none';
-            productError.style.display = 'block'; 
+            productError.style.display = 'block';
         });
 }
 
 input.addEventListener('input', inputHandler);
-

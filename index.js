@@ -12,27 +12,31 @@ app.set('view engine', 'ejs');
 require('./mongo');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(favicon(__dirname + '/public/favicon.png'));
 app.use('/assets/', express.static(path.resolve(__dirname, 'public')));
 
 let quized = false;
 let orderCreated = false;
 
-app.get('/', async(req, res) => {
+app.get('/', async (req, res) => {
 
-    const content = await Flower.find({}); 
+    const content = await Flower.find({});
 
-    const dataForSend = {content};
+    const dataForSend = {
+        content
+    };
 
-    if(quized) {
+    if (quized) {
         dataForSend.message = true;
         quized = false
     } else {
         dataForSend.message = false;
     }
 
-    if(orderCreated) {
+    if (orderCreated) {
         dataForSend.orderCreated = true;
         orderCreated = false;
     } else {
@@ -43,19 +47,39 @@ app.get('/', async(req, res) => {
 
 });
 
-app.post('/quiz', async(req, res) => {
-    const {text, phone} = req.body;
+app.post('/quiz', async (req, res) => {
+    const {
+        text,
+        phone
+    } = req.body;
 
-    const newQuiz = await new Quiz({text, phone}).save();
-    
+    const newQuiz = await new Quiz({
+        text,
+        phone
+    }).save();
+
     quized = true;
-    res.json({quiz: 'success'});
+    res.json({
+        quiz: 'success'
+    });
 });
 
-app.post('/order', async(req, res) => {
-    const {name, phone, location, amount, id} = req.body;
+app.post('/order', async (req, res) => {
+    const {
+        name,
+        phone,
+        location,
+        amount,
+        id
+    } = req.body;
 
-    const newOrder = await Order({productId: id, name, phone, location, amount}).save();
+    const newOrder = await Order({
+        productId: id,
+        name,
+        phone,
+        location,
+        amount
+    }).save();
 
     orderCreated = true;
 
@@ -65,7 +89,7 @@ app.post('/order', async(req, res) => {
 app.use('/admin', require('./admin'));
 
 const listenHandler = (err) => {
-    if(err) return console.log(err);
+    if (err) return console.log(err);
     console.log('__[ Server has started ]__');
 }
 app.listen(process.env.PORT || 5000, listenHandler);
